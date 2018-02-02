@@ -9,7 +9,7 @@ import $ from 'jquery';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private serverUrl = 'http://192.168.1.119:8888/socket'
+  private serverUrl = 'http://localhost:8080/socket'
   private title = 'WebSockets chat';
   private stompClient;
 
@@ -24,8 +24,8 @@ export class AppComponent {
     this.stompClient.connect({}, function(frame) {
       that.stompClient.subscribe("/chat", (message) => {
         if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>")
-          console.log(message.body);
+          $(".chat").append("<div class='message'>"+message.body+"</div>");
+          console.log("mensaje    : " + message.body);
         }
       });
     });
